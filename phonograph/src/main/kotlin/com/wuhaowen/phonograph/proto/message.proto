@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option java_package = "com.wuhaowen.phonograph.proto";
+
+message Result {
+    int32 r = 1;
+}
+
+message Message {
+    string userId = 1;
+    string tag = 2;
+    string message = 3;
+    string fromUser = 4;
+}
+
+
+service MessageService {
+    rpc saveMessage(Message) returns (Result) {}
+}

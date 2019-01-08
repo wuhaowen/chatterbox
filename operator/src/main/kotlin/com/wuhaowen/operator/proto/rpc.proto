@@ -1,0 +1,19 @@
+syntax = "proto3";
+package msg;
+
+option java_package = "com.wuhaowen.operator.proto";
+
+message RouterKey
+{
+    int32 instanceId = 1;
+    string userId = 2;
+}
+
+message RouterResp{
+    bool success = 1;
+}
+
+
+service RouterService{
+    rpc PutRouterRule(RouterKey) returns (RouterResp);
+}

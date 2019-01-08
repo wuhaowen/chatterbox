@@ -1,0 +1,40 @@
+syntax = "proto3";
+package msg;
+
+option java_package = "com.wuhaowen.operator.proto";
+
+message Knock
+{
+    string userId = 1;
+    string tag = 2;
+    int64 lastSeq = 3;
+    string appKey = 4;
+}
+
+message Message
+{
+    string userId = 1;
+    string tag = 2;
+    int64 seq = 3;
+    string message = 4;
+
+}
+
+message MessageResp{
+    bool success = 1;
+}
+
+message MessageReply
+{
+    int64 lastSeq = 1;
+}
+
+message Tweet
+{
+    int64 echo = 1;
+}
+
+
+service MessageService{
+    rpc MessageHandle(Message) returns (MessageResp);
+}

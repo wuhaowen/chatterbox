@@ -1,0 +1,64 @@
+buildscript {
+    ext {
+        springBootVersion = '2.0.5.RELEASE'
+    }
+    repositories {
+        maven{ url 'http://maven.aliyun.com/nexus/content/groups/public'}
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+    plugins {
+        id 'org.jetbrains.kotlin.jvm' version '1.2.71'
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.wuhaowen'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+    maven{ url 'http://maven.aliyun.com/nexus/content/groups/public'}
+    mavenCentral()
+}
+
+
+ext {
+    springCloudVersion = 'Finchley.SR1'
+}
+
+dependencies {
+    implementation('org.springframework.boot:spring-boot-starter-data-jpa')
+    implementation('org.springframework.boot:spring-boot-starter-data-redis')
+    implementation('org.springframework.boot:spring-boot-starter-web')
+    implementation('org.springframework.cloud:spring-cloud-starter')
+    implementation('org.springframework.cloud:spring-cloud-starter-consul-config')
+    implementation('org.springframework.cloud:spring-cloud-starter-consul-discovery')
+    implementation('org.springframework.cloud:spring-cloud-starter-netflix-ribbon')
+    implementation('org.springframework.cloud:spring-cloud-starter-openfeign')
+    implementation('org.springframework.retry:spring-retry')
+    implementation('org.lognet:grpc-spring-boot-starter:2.4.2')
+    runtimeOnly('org.springframework.boot:spring-boot-devtools')
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}
+
+
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+ 
